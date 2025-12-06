@@ -19,7 +19,7 @@
 Jalankan perintah berikut di terminal VPS Anda (sebagai root):
 
 ```bash
-wget -q https://raw.githubusercontent.com/AutoFTbot/ZiVPN/main/install.sh && chmod +x install.sh && ./install.sh
+wget -q https://raw.githubusercontent.com/genznet/ZiVPN/main/install.sh && chmod +x install.sh && ./install.sh
 ```
 
 ### Konfigurasi Saat Instalasi
