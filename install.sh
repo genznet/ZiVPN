@@ -38,7 +38,7 @@ run_silent() {
 
 clear
 echo -e "${BOLD}ZiVPN UDP Installer${RESET}"
-echo -e "${GRAY}AutoFTbot Edition${RESET}"
+echo -e "${GRAY}Genznet Edition${RESET}"
 echo ""
 
 if [[ "$(uname -s)" != "Linux" ]] || [[ "$(uname -m)" != "x86_64" ]]; then
@@ -85,7 +85,7 @@ run_silent "Downloading Core" "wget -q https://github.com/zahidbd2/udp-zivpn/rel
 mkdir -p /etc/zivpn
 echo "$domain" > /etc/zivpn/domain
 echo "$api_key" > /etc/zivpn/apikey
-run_silent "Configuring" "wget -q https://raw.githubusercontent.com/AutoFTbot/ZiVPN/main/config.json -O /etc/zivpn/config.json"
+run_silent "Configuring" "wget -q https://raw.githubusercontent.com/genznet/ZiVPN/main/config.json -O /etc/zivpn/config.json"
 
 run_silent "Generating SSL" "openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj '/C=ID/ST=Jawa Barat/L=Bandung/O=AutoFTbot/OU=IT Department/CN=$domain' -keyout /etc/zivpn/zivpn.key -out /etc/zivpn/zivpn.crt"
 
@@ -115,7 +115,7 @@ EOF
 
 # 11. API Setup
 mkdir -p /etc/zivpn/api
-run_silent "Setting up API" "wget -q https://raw.githubusercontent.com/AutoFTbot/ZiVPN/main/zivpn-api.go -O /etc/zivpn/api/zivpn-api.go && wget -q https://raw.githubusercontent.com/AutoFTbot/ZiVPN/main/go.mod -O /etc/zivpn/api/go.mod"
+run_silent "Setting up API" "wget -q https://raw.githubusercontent.com/genznet/ZiVPN/main/zivpn-api.go -O /etc/zivpn/api/zivpn-api.go && wget -q https://raw.githubusercontent.com/genznet/ZiVPN/main/go.mod -O /etc/zivpn/api/go.mod"
 
 cd /etc/zivpn/api
 if go build -o zivpn-api zivpn-api.go &>/dev/null; then
@@ -150,7 +150,7 @@ read -p "Admin ID : " admin_id
 if [[ -n "$bot_token" ]] && [[ -n "$admin_id" ]]; then
   echo "{\"bot_token\": \"$bot_token\", \"admin_id\": $admin_id}" > /etc/zivpn/bot-config.json
   
-  run_silent "Downloading Bot" "wget -q https://raw.githubusercontent.com/AutoFTbot/ZiVPN/main/zivpn-bot.go -O /etc/zivpn/api/zivpn-bot.go"
+  run_silent "Downloading Bot" "wget -q https://raw.githubusercontent.com/genznet/ZiVPN/main/zivpn-bot.go -O /etc/zivpn/api/zivpn-bot.go"
   
   cd /etc/zivpn/api
   run_silent "Downloading Bot Deps" "go get github.com/go-telegram-bot-api/telegram-bot-api/v5"
